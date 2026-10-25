@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利华包装胶袋 | Lihua Packaging & Plastics Factory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316', // 活力橙
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            dark: '#0f172a', // 深邃蓝
+                            card: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'Noto Sans Thai', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .pulse-animation {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(249, 115, 22, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
+
+    <!-- 1. 顶部 Header 导航 -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-orange-600 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
+                        LH
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                            <span>利华包装胶袋</span>
+                            <span class="text-xs bg-orange-500/20 text-orange-400 border border-orange-500/30 px-1.5 py-0.5 rounded uppercase font-mono hidden sm:inline-block">Factory</span>
+                        </div>
+                        <p class="text-xs text-slate-400 font-mono">Lihua Packaging </p>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-orange-400 transition-colors" data-i18n="nav_about">关于我们</a>
+                    <a href="#products" class="text-slate-300 hover:text-orange-400 transition-colors" data-i18n="nav_products">定制胶袋系列</a>
+                    <a href="#advantages" class="text-slate-300 hover:text-orange-400 transition-colors" data-i18n="nav_advantages">工厂优势</a>
+                    <a href="#contact" class="text-slate-300 hover:text-orange-400 transition-colors" data-i18n="nav_contact">联系方式</a>
+                </nav>
+
+                <!-- Language Selector & Header CTA -->
+                <div class="flex items-center space-x-3">
+                    <!-- 多语言选择 Dropdown -->
+                    <div class="relative inline-block text-left">
+                        <button id="langDropdownBtn" onclick="toggleLangMenu()" class="inline-flex items-center justify-center px-3 py-2 border border-slate-700 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800/80 hover:bg-slate-700 hover:border-slate-600 transition">
+                            <i class="fa-solid fa-globe text-orange-400 mr-2"></i>
+                            <span id="currentLangLabel">简体中文</span>
+                            <i class="fa-solid fa-chevron-down ml-2 text-[10px] text-slate-400"></i>
+                        </button>
+                        <div id="langMenu" class="hidden origin-top-right absolute right-0 mt-2 w-44 rounded-xl shadow-2xl bg-slate-800 border border-slate-700 ring-1 ring-black ring-opacity-5 z-50 overflow-hidden py-1">
+                            <button onclick="changeLanguage('zh')" class="w-full text-left px-4 py-2 text-xs text-slate-200 hover:bg-orange-500 hover:text-white transition flex items-center justify-between">
+                                <span>🇨🇳 简体中文</span>
+                                <i class="fa-solid fa-check text-xs opacity-0 check-zh"></i>
+                            </button>
+                            <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-xs text-slate-200 hover:bg-orange-500 hover:text-white transition flex items-center justify-between">
+                                <span>🇺🇸 English</span>
+                                <i class="fa-solid fa-check text-xs opacity-0 check-en"></i>
+                            </button>
+                            <button onclick="changeLanguage('id')" class="w-full text-left px-4 py-2 text-xs text-slate-200 hover:bg-orange-500 hover:text-white transition flex items-center justify-between">
+                                <span>🇮🇩 B. Indonesia</span>
+                                <i class="fa-solid fa-check text-xs opacity-0 check-id"></i>
+                            </button>
+                            <button onclick="changeLanguage('vi')" class="w-full text-left px-4 py-2 text-xs text-slate-200 hover:bg-orange-500 hover:text-white transition flex items-center justify-between">
+                                <span>🇻🇳 Tiếng Việt</span>
+                                <i class="fa-solid fa-check text-xs opacity-0 check-vi"></i>
+                            </button>
+                            <button onclick="changeLanguage('th')" class="w-full text-left px-4 py-2 text-xs text-slate-200 hover:bg-orange-500 hover:text-white transition flex items-center justify-between">
+                                <span>🇹🇭 ไทย (Thai)</span>
+                                <i class="fa-solid fa-check text-xs opacity-0 check-th"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Header Direct WeChat Btn -->
+                    <button onclick="openWechatModal()" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-600/20">
+                        <i class="fa-brands fa-weixin text-sm mr-1.5"></i>
+                        <span data-i18n="btn_wechat">微信咨询</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Hero 区域 (工厂实力展现) -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 hero-gradient overflow-hidden border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <!-- Tag -->
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
+                    <span data-i18n="hero_tag">专业PE·PO·CPE等塑料包装袋源头工厂</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-6">
+                    <span data-i18n="hero_title_1">利华包装 · 专营各类胶袋</span><br>
+                    <span class="bg-gradient-to-r from-orange-400 via-amber-300 to-amber-500 bg-clip-text text-transparent" data-i18n="hero_title_2">定制各种材质 & 精美彩色印刷</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed font-normal" data-i18n="hero_desc">
+                    专注高性能工业与商用胶袋研发定制！提供 PE袋、PO袋、CPE磨砂袋、密实拉链袋、气泡缓冲袋、热缩膜袋、珍珠棉等全品类包装解决方案，全球高品质交付。
+                </p>
+
+                <!-- 核心双联系按钮 (严禁询价，强调电话/微信) -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <!-- 微信按钮 -->
+                    <button onclick="openWechatModal()" class="px-8 py-4 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-600/30 flex items-center justify-center space-x-3 transition transform hover:-translate-y-0.5 text-base pulse-animation">
+                        <i class="fa-brands fa-weixin text-2xl"></i>
+                        <div class="text-left">
+                            <div class="text-[10px] opacity-80 uppercase tracking-wider" data-i18n="hero_btn_wechat_sub">微信实时在线解答</div>
+                            <div data-i18n="hero_btn_wechat">微信咨询：13928176246</div>
+                        </div>
+                    </button>
+
+                    <!-- 电话按钮 -->
+                    <a href="tel:+8613928176246" class="px-8 py-4 rounded-xl font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-xl shadow-orange-600/30 flex items-center justify-center space-x-3 transition transform hover:-translate-y-0.5 text-base">
+                        <i class="fa-solid fa-phone-volume text-xl"></i>
+                        <div class="text-left">
+                            <div class="text-[10px] opacity-80 uppercase tracking-wider" data-i18n="hero_btn_phone_sub">直连工厂经理</div>
+                            <div>电话：13928176246</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 信任数据背书 -->
+                <div class="grid grid-cols-3 gap-4 pt-12 border-t border-slate-800/80 mt-12">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">PE / PO / CPE</div>
+                        <div class="text-xs text-slate-400 mt-1" data-i18n="stat_1">多材质专业定制</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-orange-400 font-mono">100%</div>
+                        <div class="text-xs text-slate-400 mt-1" data-i18n="stat_2">全新料高品质保证</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">24/7</div>
+                        <div class="text-xs text-slate-400 mt-1" data-i18n="stat_3">微信/电话随时咨询</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 关于利华 (About Section) -->
+    <section id="about" class="py-16 bg-slate-900 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="aspect-video rounded-2xl overflow-hidden border border-slate-700 shadow-2xl relative group">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1000&q=80" alt="Lihua Packaging Factory" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 p-4 bg-slate-900/90 backdrop-blur rounded-xl border border-slate-700/80 flex items-center justify-between">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">利华包装胶袋</h4>
+                                <p class="text-xs text-slate-400">中外客户包装指定采购供应商</p>
+                            </div>
+                            <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/30">源头厂货</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-xs font-bold text-orange-400 uppercase tracking-widest" data-i18n="about_tag">
+                        —— 实体实体厂店 · 品质保障
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-bold text-white leading-tight" data-i18n="about_title">
+                        专营 PE, PO, CPE 各种塑料胶袋<br>定制材料与多色印刷
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="about_desc">
+                        利华包装（Lihua Packaging）立足工业 packaging 行业多年，拥有成熟的吹膜、切袋与印刷生产线。公司专营各种规格的 PE袋、PO袋、CPE高档磨砂袋、密实袋、拉链袋、气泡袋、热缩膜袋、复合袋及珍珠棉防护材料。我们支持全维度规格尺寸定制、品牌 LOGO 多色印刷，为全球电商、工业制造、服装鞋帽及电子元器件客户提供可靠包装。
+                    </p>
+                    <div class="p-4 bg-slate-800/60 border border-slate-700 rounded-xl flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-slate-200" data-i18n="about_notice_title">无需繁琐步骤，直接微信/电话咨询！</div>
+                            <div class="text-xs text-slate-400 mt-0.5" data-i18n="about_notice_desc">告诉我们您的尺寸、厚度、材质与印刷要求，我们将立刻为您解答与匹配样品！</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 产品展示区 (Products Grid) - 依据招牌门侧提炼 -->
+    <section id="products" class="py-20 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-2" data-i18n="products_subtitle">PRODUCT CATALOG</h2>
+                <h3 class="text-3xl sm:text-4xl font-black text-white" data-i18n="products_title">主要定制产品系列</h3>
+                <p class="text-slate-400 text-sm mt-3" data-i18n="products_desc">所有产品均支持尺寸、厚度、颜色及品牌 LOGO 定制印刷，欢迎随时沟通！</p>
+            </div>
+
+            <!-- 产品网格 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Product 1: PE 塑料胶袋 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://samplast.com/wp-content/uploads/2021/04/SAM-bolsa-transparente-7.jpg?utm_source=chatgpt.com">
+                         <img src="https://images.openai.com/static-rsc-4/9uUoNOGqv0oO1NboLdeT4SLAPNvsmPd0t3DdO2w_FIyrndFpD8SWeEz1rRxAnu6-Pnx-5HENYCGuOYY4Vp97-0fbln0Kt1yOMFfZwp_USXAUawW1YBeoHDNpbTcYGkwJ2eR4A1DOyIK78gwn_WAS3hJZT8rPAHjCYT4ndNbCa8IlbMV7kQUF95LuprG5hx0w?purpose=fullsize">
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">PE POLYBAGS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p1_title">PE 塑料胶袋 / 平口袋</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p1_desc">具备良好韧性、透明度与抗拉伸能力。广泛用于五金配件、电子产品、工业元件及日常用品外包装。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: PO 胶袋 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://images.openai.com/static-rsc-4/MvBjliMrQck2CoUNGBgLUsuwtw4hQofNqIwXNonmAzZC38Oaz32bqXyVKV3szeqSbunASm7wjfkf7D2KW9Y4Zf7iIQWkYAo27H4tkdy3EjmOnUKjL_Cn7WxC-N6RtIp8mzNGZ6B0alwFG30Y1PRMl9yGDoRyihlMika8hwbsuFY?purpose=inline" alt="PO Bags" >
+							<img src="https://image.made-in-china.com/2f0j00FcjolPzMpObA/Transparent-Food-Grade-Polyethylene-Packaging-Bag-for-Cake-Bread-and-Candy.webp?utm_source=chatgpt.com" alt="PO Bags" ">
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">PO / HDPE BAGS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p2_title">PO 胶袋 / 高密度包装袋</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p2_desc">材质较硬爽，承重力佳。适合制作服装手提袋、商场购物袋、工业重包装及彩印外包装袋。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: CPE 高档磨砂袋 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://images.openai.com/static-rsc-4/E3m3-8YT33Lzf9mrPNYI3zkLtnHYibXut_bet7LoACYwP_KnShNZoFRzo_-j3mdbnLwV_1VMPBt3xRIBuaopXTukQ4-M85PFK4mgg4kW26UXcnXZ6WZhFNMC26IXf5NFF_H-zdBfxge4QsNBe9KGC-rQnDu5vZ15i5KfrEjHPVQ?purpose=inline" alt="CPE Bags" >
+                        <img src="https://images.openai.com/static-rsc-4/Si0TVND_QiwUCXdJMZgLsRITnCNgprKh5YTJJBBRHbsKzGGGIAxG10LX0OKcwWfTAHOe8w0dtsMVzr5KHFsY2bknGYmQWadipq2aQIrAMf_3qG5llrSnrSLIiVO7ju-We4w5Du3gxSsQ7fFkxAAZMmdLHkA4PiuDBU15VkLp5JOwwjLV05PigeEjIt_R0SSF?purpose=fullsize" alt="CPE Bags" >
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">CPE FROSTED BAGS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p3_title">CPE 高档磨砂袋</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p3_desc">手感柔软细腻，高档半透明磨砂质感，不易划伤内装物。专供中高端手机配件、品牌服装与数码产品包装。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4: 密实袋 / 自封袋 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://images.openai.com/static-rsc-4/-enpr8GVkYhY0hTQbYq3aoMkYGBMvM1oLsIvqGnXxAnu6dz94VMBii0JooJ9LgmrrQSG_DL5629o1Md9PFMNFYzRB1pxTSXbhzgE39Uw6bEhsnRH0lotydHF6ktJKPLEmSZwCYFk2K_NlhdRiUmkh9w87LBT088xSMZnBLZigek?purpose=inline" alt="Ziplock Bags" >
+                		<img src="https://images.openai.com/static-rsc-4/hqqPV6la5y_gD3AsXQNNvfhkrJCP3QZjPVUJ3rOVIXst9t_6JYm_qoS8YR1nvuoyLIp9qOJQ9rvplLcGzyvajTxdNhRWZsRrd9jLkKJe9RuBCEv0S1zAK0u1QhmHm7Kwo9UmjMgEfcvvplS-LaXFqSQEgnbC6xKqJLPlOB7x5vJB5eG1tr98Wz5rXlv1yyWM?purpose=fullsize" alt="Ziplock Bags" >
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">ZIPLOCK BAGS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p4_title">密实袋 / 夹链自封袋</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p4_desc">防潮密封性能极佳，可重复凹凸扣封口。广泛应用于零配件分类、医药、食品及样品收纳展示。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5: 气泡袋缓冲包装 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://images.openai.com/static-rsc-4/0tymXpa7oiC_q8NHVQC5mIgf5oFu_4hMEn54mJo87rhVBNhCd5hjhQnu5koZ1KGKJtdNCaR36XaWUB5K_sDfvZa42cf6Q0xhLeoQz0ZgZxb-RtqP6T1b18Gh1EJgjtOuVMNhBgsTLRaxE91YGPbzWEUw0z9gBr5kBzpmTw8Kyj0?purpose=inline" alt="Bubble Wrap Bags" >
+                        <img src="https://images.openai.com/static-rsc-4/UKuCCN5NVdkGlQ7RfdxdkG5sycx0yw6ZkshulamJcTL2CdrLB9JV9q11Y9xyuPeN97OfrIliDMMiJUxHuI-xujp8ZSpsT-zJ-Ul-Nnut4z9wTMWjVH_rPRVy49FiVkiX5B7TItSepQ9HZMg9ffz-FOYumsCv8r5SBpmhVapcIQ4?purpose=inline" alt="Bubble Wrap Bags" >
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">BUBBLE BAGS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p5_title">防震气泡袋 / 气泡卷</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p5_desc">高密度独立气泡，具有优异的防震减压与缓冲防护功效。跨境物流、易碎陶瓷与电子产品护航防摔首选。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6: 拉链袋 & 复合袋 & 热缩袋 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition duration-300 flex flex-col group">
+                    <div class="aspect-4/3 relative overflow-hidden bg-slate-800">
+                        <img src="https://images.openai.com/static-rsc-4/9zPaovKiYyDBBACqa6FH9tUb8nCxwy933PC2PpDqRQ6UbpQ-pdyB2QHnS_a85J3_QIjHFJB6SFFiH_g0at7ix4syETfHXI-xqmhltL55ZVM2y6Lw4nUqzNuZCwN0CkhxUj15zJV39tTYVAcRcTzUcqRF0P7TJsxnQlPjwC3AN_Q?purpose=inline" >
+                       <img src="https://images.openai.com/static-rsc-4/Exo8O7kJKpwWtNq20MKBERK4a0q9mgYpU811vJAkAMxvc0yJqmJwUgE526LERgSpWpQeACPGz11dfCAeod0eJpcYWg8_GQWZWYkwZc-IQd2CR0GUPKKgiCo3t1alHJVomBU-Ib4yzFzd5UM5SamMs8Rb7es2hqqR20cL98UQ0wTJ8Sf74w1LO3L0bCtf3XHG?purpose=fullsize" >
+						<span class="absolute top-3 left-3 bg-slate-950/80 text-orange-400 text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border border-slate-700">COMPOSITE & SHRINK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-2" data-i18n="p6_title">拉链袋 / 复合袋 / 热缩袋 / 珍珠棉</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="p6_desc">提供拉头服装袋、多层铝箔复合袋、收紧热缩膜及 EPE 珍珠棉发泡防护垫，全面满足高端定做需求。</p>
+                        </div>
+                        <button onclick="openWechatModal()" class="w-full py-2.5 px-4 bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 border border-slate-700 hover:border-emerald-500">
+                            <i class="fa-brands fa-weixin text-sm"></i>
+                            <span data-i18n="btn_inquire_p">微信/电话咨询此产品</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 工厂优势 (Why Choose Us) -->
+    <section id="advantages" class="py-20 bg-slate-900 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-2" data-i18n="adv_subtitle">WHY LIHUA PACKAGING</h2>
+                <h3 class="text-3xl sm:text-4xl font-black text-white" data-i18n="adv_title">利华包装 · 4大核心竞争优势</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700/80 hover:border-orange-500/40 transition">
+                    <div class="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white mb-2" data-i18n="adv1_h">源头工厂直销</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="adv1_d">没有中间商赚差价，直接从车间到客户，大幅降低您的综合包材采购成本。</p>
+                </div>
+
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700/80 hover:border-orange-500/40 transition">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-print"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white mb-2" data-i18n="adv2_h">支持精美多色印刷</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="adv2_d">拥有先进印刷设备，支持企业 LOGO、警告语、条形码及全版图案精细印刷。</p>
+                </div>
+
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700/80 hover:border-orange-500/40 transition">
+                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white mb-2" data-i18n="adv3_h">全维度规格定制</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="adv3_d">自由定制袋型、长宽尺寸、单双面厚度（丝数）及封口方式，满足特殊需求。</p>
+                </div>
+
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700/80 hover:border-orange-500/40 transition">
+                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white mb-2" data-i18n="adv4_h">全球化发货交付</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="adv4_d">高效打样与快速大货生产，支持国内及出口全球各地的海陆空物流发货。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 底部强调联系 Banner (Footer Direct Contact Section) -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-tr from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-6 shadow-xl shadow-orange-500/20">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight mb-4" data-i18n="contact_banner_title">
+                有任何胶袋定制需求？<br>请立即通过微信或电话与我们联系！
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-10" data-i18n="contact_banner_desc">
+                我们不设繁琐的在线表格，只需简单微信打个招呼或拨通电话，利华包装专业人员随时为您报价与匹配样品！
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <button onclick="openWechatModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-600/30 flex items-center justify-center space-x-3 transition transform hover:-translate-y-0.5 text-base">
+                    <i class="fa-brands fa-weixin text-2xl"></i>
+                    <span>微信咨询：13928176246</span>
+                </button>
+
+                <a href="tel:+8613928176246" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-xl shadow-orange-600/30 flex items-center justify-center space-x-3 transition transform hover:-translate-y-0.5 text-base">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                    <span>拨打电话：13928176246</span>
+                </a>
+            </div>
+
+            <div class="mt-8 text-xs text-slate-400 flex items-center justify-center space-x-4">
+                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> 支持国际拨号: +86 13928176246</span>
+                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> 微信同号可直接搜索添加</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer 版权 -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-800 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 利华包装胶袋 Lihua Packaging  All Rights Reserved.</p>
+            <p class="mt-2 text-slate-400">联系电话/微信: 13928176246 | 专营 PE PO CPE 等各种胶袋 定制各种材料印刷胶袋</p>
+        </div>
+    </footer>
+
+    <!-- 7. 页面右下角常驻悬浮联系 Bar (Floating Bar) -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col space-y-3">
+        <!-- 微信悬浮 -->
+        <button onclick="openWechatModal()" class="w-13 h-13 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-600/50 transition duration-300 transform hover:scale-110 relative group" title="微信咨询">
+            <i class="fa-brands fa-weixin text-2xl"></i>
+            <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none shadow-xl">
+                微信咨询: 13928176246
+            </span>
+        </button>
+
+        <!-- 电话悬浮 -->
+        <a href="tel:+8613928176246" class="w-13 h-13 bg-orange-600 hover:bg-orange-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-orange-600/50 transition duration-300 transform hover:scale-110 relative group" title="电话咨询">
+            <i class="fa-solid fa-phone text-xl"></i>
+            <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none shadow-xl">
+                电话咨询: 13928176246
+            </span>
+        </a>
+    </div>
+
+    <!-- 8. 微信咨询 Modal 弹窗 -->
+    <div id="wechatModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-sm w-full p-6 text-center relative shadow-2xl transform transition-all scale-95 opacity-0 duration-300" id="modalCard">
+            <!-- 关闭按钮 -->
+            <button onclick="closeWechatModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-3">
+                <i class="fa-brands fa-weixin"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-1" data-i18n="modal_title">微信联系利华包装</h3>
+            <p class="text-xs text-slate-400 mb-6" data-i18n="modal_subtitle">扫码添加微信或直接复制手机号添加好友</p>
+
+            <!-- 模拟二维码区域 -->
+            <div class="bg-white p-4 rounded-2xl inline-block mb-5 shadow-inner border border-slate-200">
+                <!-- 预留的真实二维码逻辑图 / 替代占位 -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=13928176246" alt="WeChat QR Code" class="w-44 h-44 object-contain mx-auto">
+            </div>
+
+            <!-- 微信号复制区域 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 flex items-center justify-between mb-4">
+                <div class="text-left">
+                    <div class="text-[10px] text-slate-400" data-i18n="modal_wechat_number">微信号 / Phone:</div>
+                    <div class="text-base font-mono font-bold text-emerald-400">13928176246</div>
+                </div>
+                <button onclick="copyWechatNumber()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1">
+                    <i class="fa-solid fa-copy"></i>
+                    <span id="copyBtnText" data-i18n="btn_copy">复制微信号</span>
+                </button>
+            </div>
+
+            <p class="text-[11px] text-slate-400" data-i18n="modal_footer_note">支持中文、英语及东南亚多国客户沟通沟通</p>
+        </div>
+    </div>
+
+    <!-- JavaScript 多语言 & 交互控制 -->
+    <script>
+        // 1. 多语言对照表 (i18n Dictionary)
+        const translations = {
+            zh: {
+                nav_about: "关于我们",
+                nav_products: "定制胶袋系列",
+                nav_advantages: "工厂优势",
+                nav_contact: "联系方式",
+                btn_wechat: "微信咨询",
+                hero_tag: "专业 PE · PO · CPE 等塑料包装袋源头工厂",
+                hero_title_1: "利华包装 · 专营各类胶袋",
+                hero_title_2: "定制各种材质 & 精美彩色印刷",
+                hero_desc: "专注高性能工业与商用胶袋研发定制！提供 PE袋、PO袋、CPE磨砂袋、密实拉链袋、气泡缓冲袋、热缩膜袋、珍珠棉等全品类包装解决方案，全球高品质交付。",
+                hero_btn_wechat_sub: "微信实时在线解答",
+                hero_btn_wechat: "微信咨询：13928176246",
+                hero_btn_phone_sub: "直连工厂经理",
+                stat_1: "多材质专业定制",
+                stat_2: "全新料高品质保证",
+                stat_3: "微信/电话随时咨询",
+                about_tag: "—— 实体厂店 · 品质保障",
+                about_title: "专营 PE, PO, CPE 各种塑料胶袋\n定制材料与多色印刷",
+                about_desc: "利华包装（Lihua Packaging）立足工业包装行业多年，拥有成熟的吹膜、切袋与印刷生产线。公司专营各种规格的 PE袋、PO袋、CPE高档磨砂袋、密实袋、拉链袋、气泡袋、热缩膜袋、复合袋及珍珠棉防护材料。我们支持全维度规格尺寸定制、品牌 LOGO 多色印刷，为全球客户提供可靠包装。",
+                about_notice_title: "无需繁琐步骤，直接微信/电话咨询！",
+                about_notice_desc: "告诉我们您的尺寸、厚度、材质与印刷要求，我们将立刻为您解答与匹配样品！",
+                products_subtitle: "PRODUCT CATALOG",
+                products_title: "主要定制产品系列",
+                products_desc: "所有产品均支持尺寸、厚度、颜色及品牌 LOGO 定制印刷，欢迎随时沟通！",
+                p1_title: "PE 塑料胶袋 / 平口袋",
+                p1_desc: "具备良好韧性、透明度与抗拉伸能力。广泛用于五金配件、电子产品、工业元件及日常用品外包装。",
+                p2_title: "PO 胶袋 / 高密度包装袋",
+                p2_desc: "材质较硬爽，承重力佳。适合制作服装手提袋、商场购物袋、工业重包装及彩印外包装袋。",
+                p3_title: "CPE 高档磨砂袋",
+                p3_desc: "手感柔软细腻，高档半透明磨砂质感，不易划伤内装物。专供中高端手机配件、品牌服装与数码产品包装。",
+                p4_title: "密实袋 / 夹链自封袋",
+                p4_desc: "防潮密封性能极佳，可重复凹凸扣封口。广泛应用于零配件分类、医药、食品及样品收纳展示。",
+                p5_title: "防震气泡袋 / 气泡卷",
+                p5_desc: "高密度独立气泡，具有优异的防震减压与缓冲防护功效。跨境物流、易碎陶瓷与电子产品护航防摔首选。",
+                p6_title: "拉链袋 / 复合袋 / 热缩袋 / 珍珠棉",
+                p6_desc: "提供拉头服装袋、多层铝箔复合袋、收紧热缩膜及 EPE 珍珠棉发泡防护垫，全面满足高端定做需求。",
+                btn_inquire_p: "微信/电话咨询此产品",
+                adv_subtitle: "WHY LIHUA PACKAGING",
+                adv_title: "利华包装 · 4大核心竞争优势",
+                adv1_h: "源头工厂直销",
+                adv1_d: "没有中间商赚差价，直接从车间到客户，大幅降低您的综合包材采购成本。",
+                adv2_h: "支持精美多色印刷",
+                adv2_d: "拥有先进印刷设备，支持企业 LOGO、警告语、条形码及全版图案精细印刷。",
+                adv3_h: "全维度规格定制",
+                adv3_d: "自由定制袋型、长宽尺寸、单双面厚度（丝数）及封口方式，满足特殊需求。",
+                adv4_h: "全球化发货交付",
+                adv4_d: "高效打样与快速大货生产，支持国内及出口全球各地的海陆空物流发货。",
+                contact_banner_title: "有任何胶袋定制需求？\n请立即通过微信或电话与我们联系！",
+                contact_banner_desc: "我们不设繁琐的在线表格，只需简单微信打个招呼或拨通电话，利华包装专业人员随时为您报价与匹配样品！",
+                modal_title: "微信联系利华包装",
+                modal_subtitle: "扫码添加微信或直接复制手机号添加好友",
+                modal_wechat_number: "微信号 / Phone:",
+                btn_copy: "复制微信号",
+                modal_footer_note: "支持中文、英语及东南亚多国客户沟通"
+            },
+            en: {
+                nav_about: "About Us",
+                nav_products: "Products",
+                nav_advantages: "Advantages",
+                nav_contact: "Contact Us",
+                btn_wechat: "WeChat Contact",
+                hero_tag: "Professional Factory for PE, PO, CPE Plastic Bags",
+                hero_title_1: "Lihua Packaging · Plastic Bags Specialist",
+                hero_title_2: "Custom Materials & Multi-Color Printing",
+                hero_desc: "Custom high-performance industrial & commercial packaging! Supplying PE bags, PO bags, CPE frosted bags, ziplock bags, bubble bags, shrink films, EPE foam and global shipping.",
+                hero_btn_wechat_sub: "Online via WeChat",
+                hero_btn_wechat: "WeChat: +86 13928176246",
+                hero_btn_phone_sub: "Direct Factory Manager",
+                stat_1: "Custom Materials",
+                stat_2: "100% Virgin Material",
+                stat_3: "24/7 Phone & WeChat",
+                about_tag: "—— Factory Direct · Guaranteed Quality",
+                about_title: "Specialize in PE, PO, CPE Plastic Bags\nCustom Sizes & Multi-Color Printing",
+                about_desc: "Lihua Packaging has decades of experience in the industrial packaging sector. We specialize in PE polybags, PO high-density bags, premium CPE frosted bags, ziplock bags, bubble wrap, shrink film, and EPE foam packaging. Custom logo printing and sizing tailored for worldwide clients.",
+                about_notice_title: "No complex forms, contact via WeChat/Phone directly!",
+                about_notice_desc: "Tell us your size, thickness, material and printing requirements via WeChat/Phone for instant feedback!",
+                products_subtitle: "PRODUCT CATALOG",
+                products_title: "Custom Packaging Series",
+                products_desc: "All bags support custom sizing, thickness, color, and brand logo printing.",
+                p1_title: "PE Polybags / Flat Bags",
+                p1_desc: "Tough, transparent, and stretch-resistant. Widely used for hardware, electronics, and general items.",
+                p2_title: "PO / HDPE Bags",
+                p2_desc: "Stiff and high load capacity. Perfect for garment bags, shopping bags, and industrial outer packaging.",
+                p3_title: "CPE Frosted Bags",
+                p3_desc: "Soft touch with elegant semi-transparent frosted texture. Ideal for phone accessories, apparel, and electronics.",
+                p4_title: "Ziplock / Reclosable Bags",
+                p4_desc: "Moisture-proof and resealable. Perfect for small parts, pharmaceuticals, food, and sample storage.",
+                p5_title: "Anti-Shock Bubble Bags",
+                p5_desc: "High-density bubble cushioning for superior shock protection during global transit and e-commerce shipping.",
+                p6_title: "Zipper & Composite & Shrink Bags",
+                p6_desc: "Zipper bags, multi-layer aluminum foil composite bags, shrink wraps, and EPE protective foam.",
+                btn_inquire_p: "Inquire via WeChat / Phone",
+                adv_subtitle: "WHY LIHUA PACKAGING",
+                adv_title: "4 Key Competitive Advantages",
+                adv1_h: "Factory Direct Pricing",
+                adv1_d: "Direct from manufacturing floor to clients, significantly reducing your packaging costs.",
+                adv2_h: "Multi-Color Printing",
+                adv2_d: "Advanced printing machines supporting brand LOGO, warnings, barcodes, and full artwork.",
+                adv3_h: "Full Customization",
+                adv3_d: "Custom sizes, thickness, sealing styles, and materials tailored to your needs.",
+                adv4_h: "Global Shipping",
+                adv4_d: "Fast sampling and mass production supporting sea, air, and land logistics worldwide.",
+                contact_banner_title: "Need Custom Packaging?\nContact Us via WeChat or Phone Now!",
+                contact_banner_desc: "Skip inquiry forms! Simply add us on WeChat or call directly for immediate pricing and sample support.",
+                modal_title: "Contact via WeChat",
+                modal_subtitle: "Scan QR Code or copy phone number to add on WeChat",
+                modal_wechat_number: "WeChat ID / Phone:",
+                btn_copy: "Copy WeChat ID",
+                modal_footer_note: "We speak Chinese, English, and assist global customers"
+            },
+            id: {
+                nav_about: "Tentang Kami",
+                nav_products: "Katalog Produk",
+                nav_advantages: "Keunggulan",
+                nav_contact: "Hubungi Kami",
+                btn_wechat: "Konsultasi WeChat",
+                hero_tag: "Pabrik Spesialis Kantong Plastik PE, PO, CPE",
+                hero_title_1: "Lihua Packaging · Spesialis Kantong Plastik",
+                hero_title_2: "Kustom Bahan & Cetak Warna Presisi",
+                hero_desc: "Produsen kantong plastik industri dan komersial! Menyediakan kantong PE, PO, CPE buram, ziplock, bubble wrap, plastik shrink, dan EPE foam dengan pengiriman global.",
+                hero_btn_wechat_sub: "Respon Cepat via WeChat",
+                hero_btn_wechat: "WeChat: +86 13928176246",
+                hero_btn_phone_sub: "Hubungi Manajer Pabrik",
+                stat_1: "Kustom Aneka Bahan",
+                stat_2: "100% Bahan Murni",
+                stat_3: "Telepon / WeChat 24/7",
+                about_tag: "—— Pabrik Langsung · Kualitas Terjamin",
+                about_title: "Spesialis Kantong Plastik PE, PO, CPE\nUkuran Kustom & Cetak Logo Brand",
+                about_desc: "Lihua Packaging berpengalaman bertahun-tahun dalam industri kemasan plastik. Kami memproduksi kantong PE, PO, CPE frosted, ziplock, kantong bubble, dan foam EPE dengan standar kualitas ekspor.",
+                about_notice_title: "Tanpa formulir rumit, langsung via WeChat/Telepon!",
+                about_notice_desc: "Informasikan ukuran, ketebalan, dan cetakan logo Anda via WeChat/Telepon untuk respon instan!",
+                products_subtitle: "KATALOG PRODUK",
+                products_title: "Seri Produk Kemasan Kustom",
+                products_desc: "Semua produk mendukung ukuran, ketebalan, dan cetak logo merek kustom.",
+                p1_title: "Kantong Plastik PE / Polythene Bag",
+                p1_desc: "Kuat, fleksibel, dan tahan tarik. Sangat cocok untuk komponen elektronik, perangkat keras, dan barang umum.",
+                p2_title: "Kantong PO / HDPE Bag",
+                p2_desc: "Bahan kaku dan tahan beban berat. Cocok untuk kantong pakaian, belanjaan, dan pengemasan luar industri.",
+                p3_title: "Kantong CPE Buram Premium",
+                p3_desc: "Tekstur halus dan buram semi-transparan. Sangat elegan untuk aksesoris HP, pakaian merek, dan elektronik.",
+                p4_title: "Kantong Ziplock / Klip Reusable",
+                p4_desc: "Kedap udara dan tahan kelembapan. Cocok untuk menyimpan komponen kecil, sampel, dan aksesoris.",
+                p5_title: "Kantong Bubble Wrap Pelindung",
+                p5_desc: "Gelembung udara padat untuk perlindungan maksimal dari benturan saat pengiriman logistik internasional.",
+                p6_title: "Kantong Zipper & Film Shrink & EPE",
+                p6_desc: "Menyediakan kantong zipper pakaian, komposit aluminium foil, film shrink, dan busa EPE pelindung.",
+                btn_inquire_p: "Tanya via WeChat / Telepon",
+                adv_subtitle: "MENGAPA LIHUA PACKAGING",
+                adv_title: "4 Keunggulan Utama Kami",
+                adv1_h: "Harga Langsung dari Pabrik",
+                adv1_d: "Tanpa perantara, dari pabrik langsung ke pembeli untuk menghemat biaya kemasan Anda.",
+                adv2_h: "Cetak Logo & Warna Presisi",
+                adv2_d: "Mesin cetak canggih mendukung logo merek, baris teks peringatan, dan cetakan gambar penuh.",
+                adv3_h: "Kustomisasi Penuh",
+                adv3_d: "Bebas menentukan ukuran, ketebalan, warna, dan tipe segel sesuai kebutuhan Anda.",
+                adv4_h: "Pengiriman Ekspor Global",
+                adv4_d: "Sampel cepat dan produksi massal dengan pengiriman laut, udara, dan darat ke seluruh dunia.",
+                contact_banner_title: "Butuh Kemasan Plastik Kustom?\nHubungi Kami via WeChat atau Telepon!",
+                contact_banner_desc: "Langsung kontak via WeChat atau telepon untuk mendapatkan penawaran harga dan sampel secara instan!",
+                modal_title: "Hubungi via WeChat",
+                modal_subtitle: "Pindai kode QR atau salin nomor HP untuk menambahkan kontak WeChat",
+                modal_wechat_number: "ID WeChat / No HP:",
+                btn_copy: "Salin ID WeChat",
+                modal_footer_note: "Dukungan komunikasi bahasa Mandarin, Inggris & Asia Tenggara"
+            },
+            vi: {
+                nav_about: "Về Chúng Tôi",
+                nav_products: "Sản Phẩm",
+                nav_advantages: "Ưu Thế Factory",
+                nav_contact: "Liên Hệ",
+                btn_wechat: "Tư Vấn WeChat",
+                hero_tag: "Nhà Máy Chuyên Sản Xuất Túi Nhựa PE, PO, CPE",
+                hero_title_1: "Bao Bì Lihua · Chuyên Túi Nhựa Nhiều Loại",
+                hero_title_2: "Tùy Chỉnh Chất Liệu & In Ấn Nhiều Màu",
+                hero_desc: "Chuyên sản xuất túi nhựa công nghiệp & thương mại! Cung cấp túi PE, PO, CPE mờ, túi ziplock, túi bóng khí, màng co và mút xốp EPE giao hàng toàn cầu.",
+                hero_btn_wechat_sub: "Phản hồi trực tuyến qua WeChat",
+                hero_btn_wechat: "WeChat: +86 13928176246",
+                hero_btn_phone_sub: "Gọi Trực Tiếp Giám Đốc",
+                stat_1: "Tùy Chỉnh Đa Chất Liệu",
+                stat_2: "100% Nguyên Liệu Mới",
+                stat_3: "Tư Vấn 24/7 Qua Điện Thoại",
+                about_tag: "—— Xưởng Trực Tiếp · Chất Lượng Đảm Bảo",
+                about_title: "Chuyên Túi Nhựa PE, PO, CPE\nIn Ấn Logo Thương Hiệu Theo Yêu Cầu",
+                about_desc: "Bao Bì Lihua (Lihua Packaging) có nhiều năm kinh nghiệm sản xuất túi nhựa công nghiệp. Chúng tôi chuyên sản xuất túi PE, PO, CPE mờ cao cấp, túi ziplock, túi xốp khí, màng co và xốp EPE chất lượng cao.",
+                about_notice_title: "Không cần điền biểu mẫu, tư vấn trực tiếp qua WeChat/Điện thoại!",
+                about_notice_desc: "Hãy gửi kích thước, độ dày và yêu cầu in ấn qua WeChat/Điện thoại để nhận báo giá ngay lập tức!",
+                products_subtitle: "DANH MỤC SẢN PHẨM",
+                products_title: "Các Dòng Sản Phẩm Bao Bì Custom",
+                products_desc: "Tất cả sản phẩm đều hỗ trợ tùy chỉnh kích thước, độ dày, màu sắc và in logo.",
+                p1_title: "Túi Nhựa PE / Túi Phẳng",
+                p1_desc: "Độ bền cao, độ trong suốt tốt và co giãn tốt. Sử dụng phổ biến cho linh kiện cơ khí, điện tử và hàng hóa.",
+                p2_title: "Túi PO / HDPE Cao Cấp",
+                p2_desc: "Chất liệu cứng cáp, chịu lực tốt. Thích hợp làm túi mua sắm quần áo, túi đựng quà và bao bì công nghiệp.",
+                p3_title: "Túi CPE Mờ Cao Cấp",
+                p3_desc: "Bề mặt mượt mà, chất liệu mờ bán trong suốt sang trọng. Chuyên dùng cho phụ kiện điện thoại, thời trang cao cấp.",
+                p4_title: "Túi Ziplock / Túi Miết Miệng",
+                p4_desc: "Kín khí, chống ẩm vượt trội. Phù hợp cho việc phân loại linh kiện nhỏ, dược phẩm, thực phẩm và mẫu thử.",
+                p5_title: "Túi Khí Anti-Shock Pelindung",
+                p5_desc: "Bóng khí mật độ cao giúp chống sốc tuyệt vời, bảo vệ hàng hóa vận chuyển đường dài và thương mại điện tử.",
+                p6_title: "Túi Khóa Zipper & Màng Co & Xốp EPE",
+                p6_desc: "Cung cấp túi zipper quần áo, túi nhôm phức hợp, màng co nhiệt và mút xốp EPE bảo vệ chống va đập.",
+                btn_inquire_p: "Tư vấn qua WeChat / Điện thoại",
+                adv_subtitle: "TẠI SAO CHỌN LIHUA PACKAGING",
+                adv_title: "4 Ưu Thế Cạnh Tranh Cốt Lõi",
+                adv1_h: "Giá Gốc Từ Nhà Máy",
+                adv1_d: "Không qua trung gian, giao trực tiếp từ xưởng đến khách hàng giúp tiết kiệm tối đa chi phí.",
+                adv2_h: "In Ấn Nhiều Màu Sắc Nét",
+                adv2_d: "Trang thiết bị in hiện đại hỗ trợ in logo thương hiệu, mã vạch, ký hiệu cảnh báo sắc nét.",
+                adv3_h: "Tùy Chỉnh Kích Thước Toàn Diện",
+                adv3_d: "Tùy chọn kích thước dài rộng, độ dày (micro) và kiểu dáng niêm phong theo đúng nhu cầu.",
+                adv4_h: "Giao Hàng Xuất Khẩu Toàn Cầu",
+                adv4_d: "Làm mẫu nhanh và sản xuất hàng loạt, hỗ trợ vận chuyển đường biển, đường hàng không quốc tế.",
+                contact_banner_title: "Bạn Cần Đặt Túi Nhựa Theo Yêu Cầu?\nLiên Hệ Ngay Qua WeChat Hoặc Điện Thoại!",
+                contact_banner_desc: "Hãy gọi điện hoặc nhắn tin WeChat trực tiếp cho chúng tôi để được hỗ trợ báo giá và gửi mẫu tức thì!",
+                modal_title: "Liên Hệ Qua WeChat",
+                modal_subtitle: "Quét mã QR hoặc sao chép số điện thoại để thêm bạn WeChat",
+                modal_wechat_number: "Số WeChat / Điện thoại:",
+                btn_copy: "Sao chép số WeChat",
+                modal_footer_note: "Hỗ trợ giao tiếp tiếng Trung, tiếng Anh và tiếng Việt"
+            },
+            th: {
+                nav_about: "เกี่ยวกับเรา",
+                nav_products: "แคตตาล็อกสินค้า",
+                nav_advantages: "จุดเด่นของเรา",
+                nav_contact: "ติดต่อเรา",
+                btn_wechat: "สอบถามทาง WeChat",
+                hero_tag: "โรงงานผู้ผลิตถุงพลาสติก PE, PO, CPE โดยตรง",
+                hero_title_1: "หลี่ฮวา แพคเกจจิ้ง · ผู้เชี่ยวชาญถุงพลาสติก",
+                hero_title_2: "รับสั่งทำตามขนาด & สกรีนโลโก้หลายสี",
+                hero_desc: "รับผลิตถุงพลาสติกสำหรับอุตสาหกรรมและกาค้า! บริการถุง PE, PO, CPE เนื้อทราย, ถุงซิปล็อค, ถุงกันกระแทก บับเบิ้ล, ฟิล์มหด และโฟม EPE พร้อมจัดส่งทั่วโลก",
+                hero_btn_wechat_sub: "ตอบกลับรวดเร็วผ่าน WeChat",
+                hero_btn_wechat: "WeChat: +86 13928176246",
+                hero_btn_phone_sub: "โทรตรงถึงผู้จัดการโรงงาน",
+                stat_1: "รับสั่งทำทุกวัสดุ",
+                stat_2: "เม็ดพลาสติกใหม่ 100%",
+                stat_3: "ติดต่อได้ 24 ชั่วโมง",
+                about_tag: "—— โรงงานผู้ผลิตโดยตรง · รับประกันคุณภาพ",
+                about_title: "เชี่ยวชาญถุงพลาสติก PE, PO, CPE\nสั่งทำขนาดและพิมพ์โลโก้แบรนด์",
+                about_desc: "Lihua Packaging มีประสบการณ์ยาวนานในอุตสาหกรรมบรรจุภัณฑ์พลาสติก เราผลิตถุง PE, PO, CPE ขุ่นพรีเมี่ยม, ถุงซิปล็อค, ถุงกันกระแทก และพลาสติกหด ได้มาตรฐานการส่งออกทั่วโลก",
+                about_notice_title: "ไม่ต้องกรอกแบบฟอร์ม ติดต่อผ่าน WeChat/โทรศัพท์ ได้ทันที!",
+                about_notice_desc: "แจ้งขนาด ความหนา และรายละเอียดการพิมพ์ ผ่าน WeChat หรือโทรศัพท์ เพื่อรับการประเมินราคาและตัวอย่างได้ทันที",
+                products_subtitle: "PRODUCT CATALOG",
+                products_title: "รายการสินค้าสั่งทำหลัก",
+                products_desc: "สินค้าทุกชนิดรองรับการสั่งทำขนาด ความหนา สี และพิมพ์โลโก้แบรนด์",
+                p1_title: "ถุงพลาสติก PE / ถุงใส",
+                p1_desc: "เหนียวทนทาน ยืดหยุ่นดี ใสสะอาด เหมาะสำหรับใส่อะไหล่ อุปกรณ์อิเล็กทรอนิกส์ และสินค้าทั่วไป",
+                p2_title: "ถุง PO / HDPE สัมผัสแข็งแรง",
+                p2_desc: "เนื้อพลาสติกแข็งแรง รองรับน้ำหนักได้ดี เหมาะสำหรับทำถุงหูหิ้วเสื้อผ้า ถุงช้อปปิ้ง และบรรจุภัณฑ์อุตสาหกรรม",
+                p3_title: "ถุง CPE เนื้อทราย ขุ่นพรีเมี่ยม",
+                p3_desc: "ผิวนุ่มลื่น สัมผัสหรูหราเนื้อขุ่นกึ่งใส เหมาะสำหรับใส่อุปกรณ์มือถือ เสื้อผ้าแบรนด์เนม และสินค้าไอที",
+                p4_title: "ถุงซิปล็อค / ถุงซิปปิดแน่น",
+                p4_desc: "กันความชื้นและกันฝุ่นได้ดีเยี่ยม ซิปล็อคเปิด-ปิดซ้ำได้ เหมาะสำหรับแยกชิ้นส่วน ยา อาหาร และสินค้าตัวอย่าง",
+                p5_title: "ถุงกันกระแทก บับเบิ้ล",
+                p5_desc: "เม็ดบับเบิ้ลความหนาแน่นสูง ช่วยรองรับแรงกระแทกได้ดีเยี่ยม เหมาะสำหรับการขนส่งสินค้าทางไกลและอีคอมเมิร์ซ",
+                p6_title: "ถุงซิปรูด & ถุงอลูมิเนียม & ฟิล์มหด & โฟม EPE",
+                p6_desc: "บริการถุงซิปรูดใส่เสื้อผ้า ถุงอลูมิเนียมฟอยล์ ฟิล์มหดความร้อน และแผ่นโฟม EPE กันรอย",
+                btn_inquire_p: "สอบถามทาง WeChat / โทรศัพท์",
+                adv_subtitle: "WHY LIHUA PACKAGING",
+                adv_title: "4 จุดเด่นสำคัญของเรา",
+                adv1_h: "ราคาตรงจากโรงงาน",
+                adv1_d: "ไม่ผ่านพ่อค้าคนกลาง ส่งตรงจากสายการผลิตถึงมือคุณ ช่วยลดต้นทุนบรรจุภัณฑ์ได้อย่างมาก",
+                adv2_h: "พิมพ์โลโก้หลายสีคมชัด",
+                adv2_d: "เครื่องพิมพ์ทันสมัย รองรับการพิมพ์โลโก้แบรนด์ ข้อความเตือน บาร์โค้ด และลวดลายเต็มแผ่น",
+                adv3_h: "ปรับแต่งได้ทุกสเปค",
+                adv3_d: "กำหนดขนาดความกว้าง ยาว ความหนา และรูปแบบการซีลได้ตามความต้องการของคุณ",
+                adv4_h: "จัดส่งสินค้าทั่วโลก",
+                adv4_d: "ขึ้นตัวอย่างรวดเร็วและผลิตจำนวนมาก พร้อมบริการจัดส่งทางเรือ ทางอากาศ และทางบกทั่วโลก",
+                contact_banner_title: "ต้องการสั่งทำถุงพลาสติก?\nติดต่อเราทาง WeChat หรือโทรศัพท์ ได้ทันที!",
+                contact_banner_desc: "ไม่ต้องเสียเวลากรอกข้อมูล! เพียงแอด WeChat หรือโทรหาเราเพื่อรับการเสนอราคาและรับคำปรึกษาทันที",
+                modal_title: "ติดต่อผ่าน WeChat",
+                modal_subtitle: "สแกน QR Code หรือคัดลอกเบอร์โทรศัพท์เพื่อเพิ่มเพื่อนใน WeChat",
+                modal_wechat_number: "ID WeChat / เบอร์โทร:",
+                btn_copy: "คัดลอก ID WeChat",
+                modal_footer_note: "รองรับการสื่อสารภาษาจีน ภาษาอังกฤษ และภาษาในเอเชียตะวันออกเฉียงใต้"
+            }
+        };
+
+        let currentLang = 'zh';
+
+        // 2. 切换语言 Dropdown 菜单显示/隐藏
+        function toggleLangMenu() {
+            const menu = document.getElementById('langMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 点击外部关闭 Dropdown
+        window.addEventListener('click', function(e) {
+            const btn = document.getElementById('langDropdownBtn');
+            const menu = document.getElementById('langMenu');
+            if (btn && menu && !btn.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // 3. 执行语言切换逻辑
+        function changeLanguage(langKey) {
+            currentLang = langKey;
+            
+            // 更新 Label
+            const labels = {
+                zh: '简体中文',
+                en: 'English',
+                id: 'B. Indonesia',
+                vi: 'Tiếng Việt',
+                th: 'ไทย (Thai)'
+            };
+            document.getElementById('currentLangLabel').innerText = labels[langKey] || 'Language';
+
+            // 更新 Check Icon 显示
+            ['zh', 'en', 'id', 'vi', 'th'].forEach(k => {
+                const el = document.querySelector(`.check-${k}`);
+                if (el) {
+                    if (k === langKey) el.classList.remove('opacity-0');
+                    else el.classList.add('opacity-0');
+                }
+            });
+
+            // 替换所有 Data-i18n 属性节点的文本
+            const dict = translations[langKey] || translations['zh'];
+            document.querySelectorAll('[data-i18n]').forEach(node => {
+                const key = node.getAttribute('data-i18n');
+                if (dict[key]) {
+                    // 处理换行符 \n
+                    if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
+                        node.value = dict[key];
+                    } else {
+                        node.innerText = dict[key];
+                    }
+                }
+            });
+
+            // 隐藏下拉菜单
+            document.getElementById('langMenu').classList.add('hidden');
+        }
+
+        // 4. Modal 控制逻辑 (WeChat)
+        function openWechatModal() {
+            const modal = document.getElementById('wechatModal');
+            const card = document.getElementById('modalCard');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeWechatModal() {
+            const modal = document.getElementById('wechatModal');
+            const card = document.getElementById('modalCard');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // 点击背景关闭 Modal
+        document.getElementById('wechatModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWechatModal();
+            }
+        });
+
+        // 5. 复制微信号功能
+        function copyWechatNumber() {
+            const wechatNum = "13928176246";
+            
+            // 使用标准的 execCommand 兼容 iFrame 与各浏览器
+            const tempInput = document.createElement("input");
+            tempInput.value = wechatNum;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const btnText = document.getElementById('copyBtnText');
+            const originalText = btnText.innerText;
+            btnText.innerText = "已复制！";
+            btnText.classList.add("text-amber-300");
+
+            setTimeout(() => {
+                btnText.innerText = originalText;
+                btnText.classList.remove("text-amber-300");
+            }, 2000);
+        }
+
+        // 默认初始化中文
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('zh');
+        });
+    </script>
+</body>
+</html>
